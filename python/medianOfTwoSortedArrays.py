@@ -19,7 +19,7 @@ class Solution:
                     return  1.0*(a +self.getK(listA[1:] , listB , 1, False))/2
                 return 1.0*(b + self.getK(listA, listB[1:] , 1, False))/2
             return min(listA[0], listB[0])
-        parA = min(lenA,k/2)
+        parA = min(lenA,(k>>1)+(k-(k>>1<<1)))
         parB = k - parA
         if listA[parA-1] <= listB[parB-1]:
             return self.getK(listA[parA:] , listB , parB, even)
@@ -33,10 +33,10 @@ class Solution:
 
 
     def findMedianSortedArrays(self, nums1, nums2):
-        length = len(nums1) + len(nums2)
-        k = int(math.ceil(1. * length / 2))
+        l = len(nums1) + len(nums2)
+        k = (l>>1)+(l-(l>>1<<1))
         print 'k: ',k
-        if length%2 == 0:
+        if l%2 == 0:
         	return self.getK(nums1,nums2,k, True)
         return self.getK(nums1,nums2,k ,False)
 
