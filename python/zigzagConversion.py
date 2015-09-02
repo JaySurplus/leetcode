@@ -1,4 +1,3 @@
-
 class Solution(object):
     def convert(self, s, numRows):
         """
@@ -9,9 +8,7 @@ class Solution(object):
         if numRows == 1:
         	return s
         result=['']*numRows
-
-        
-        rang = (numRows-1)*2
+        rang = (numRows-1)<<1
        
         for i in range(len(s)):
         	pos = i%rang
