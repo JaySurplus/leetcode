@@ -1,1 +1,8 @@
-*.pyc
+#Ignore all
+*
+
+
+#Except:
+*.py
+*.cpp
+README.md
