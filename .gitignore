@@ -3,6 +3,6 @@
 
 
 #Except:
-*.py
-*.cpp
-README.md
+!*.py
+!*.cpp
+!README.md
