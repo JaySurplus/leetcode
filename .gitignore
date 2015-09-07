@@ -2,5 +2,4 @@
 
 
 #Except
-!python/*.py
-!cpp/*.cpp
+
