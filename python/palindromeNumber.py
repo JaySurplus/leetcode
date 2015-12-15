@@ -2,7 +2,7 @@
 	Palindrome Number
 	https://leetcode.com/problems/palindrome-number/
 """
-import math
+#import math
 class Solution(object):
     def isPalindrome(self, x):
         """
@@ -14,10 +14,25 @@ class Solution(object):
         	return False
         if x < 10:
         	return True
-        size = 0
-        while x/(10**(size+1))!=0:
-        	size+=1
-        	
+
+       
+        def size(n):
+        	size = 0
+        	while n /10 != 0:
+        		size+=1
+        		n = n/10
+        	return size
+
+        size = size(x)
+
+        if x%10 != x/10**size:
+        	return False
+        else:
+        	x = x%10**size
+        	x = x/10
+        	return self.isPalindrome(x)
+
+        '''
         #print size
         while size >= 1:
         	#print x%10 , x/(10**size)
@@ -27,7 +42,7 @@ class Solution(object):
         	size -= 2 
         	#print size
         return True
-        
+        '''
         """
         if x < 0:
         	return False
@@ -58,8 +73,10 @@ class Solution(object):
 def main():
 	test = Solution()
 	#return test.isPalindrome(1)
+	print test.isPalindrome(112211)
+	print test.isPalindrome(1123211)
+	print test.isPalindrome(112321411)
 	print test.isPalindrome(11211)
-
 
 if __name__ == '__main__':
 	main()
