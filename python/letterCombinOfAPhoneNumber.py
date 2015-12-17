@@ -44,4 +44,4 @@ class Solution(object):
 	
 
 sol = Solution()
-print sol.letterCombinations("")
+print sol.letterCombinations("23456789")
