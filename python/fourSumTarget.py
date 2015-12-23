@@ -15,6 +15,7 @@ class Solution(object):
 			return finalResult
 
 		elif n == 1:
+			# If n == 1, then return the first occurence of target.
 			if nums[start] <= target and nums[end-1] >= target:
 				for i in range(start, end):
 				
@@ -25,7 +26,7 @@ class Solution(object):
 						return finalResult
 
 		elif n == end - start :
-			
+			# if number of elements equals to n , then just check wether summation of nums is equals to target or not.
 			if reduce(lambda x , y : x+y , nums[start:end]) == target:
 				finalResult.append(nums[start:end])
 			return finalResult
@@ -46,7 +47,7 @@ class Solution(object):
 
 					i+=1
 					j-=1
-
+				# skip redundant elements
 					while i<j and nums[i] == nums[i-1]:
 						i +=1 
 							
@@ -64,11 +65,12 @@ class Solution(object):
 					j -= 1
 					while i<j and nums[j] == nums[j+1]:
 						j -= 1
-						
+				# skip down
 					
 		else:
 			
 			for i in range(start , end-n+1):
+				# skip.
 				if i+n <end : 
 					if nums[i] != nums[i+n]:
 						temp = copy.deepcopy(subResult)
