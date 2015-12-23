@@ -22,7 +22,9 @@ class Solution(object):
 		for i in range(len(s)):
 			if s[i] in parentheseOpen:
 				ls.append(s[i])
-			if s[i] in parentheseClose:
+
+			elif s[i] in parentheseClose:
+				
 				if len(ls) == 0:
 					return False
 
@@ -32,3 +34,5 @@ class Solution(object):
 		if len(ls) != 0:
 			return False
 		return True
+
+
