@@ -9,30 +9,35 @@
 
 """
 class Solution(object):
+	def __init__(self):
+		self.parentheseOpen = ["(" , "[" , "{"]
+		self.parentheseClose =  [")" , "]" , "}"]
+		self.parentheses = {")" : "(" ,
+							"}" : "{",
+							"]" : "["}
+
+
 	def isValid(self, s):
-		parentheses = {")" : "(" ,
-						"}" : "{",
-						"]" : "["}
 		
-		parentheseOpen = ["(" , "[" , "{"]
-		parentheseClose = [")" , "]" , "}"]
 
 		ls = []
 
-		for i in range(len(s)):
-			if s[i] in parentheseOpen:
+		for i in xrange(len(s)):
+			if s[i] in self.parentheseOpen:
 				ls.append(s[i])
 
-			elif s[i] in parentheseClose:
-				
+			elif s[i] in self.parentheseClose:
+
 				if len(ls) == 0:
 					return False
 
-				if parentheses[s[i]] != ls.pop():
+				elif self.parentheses[s[i]] != ls.pop():
 					return False
 
-		if len(ls) != 0:
-			return False
-		return True
+		
+			
+		return len(ls) == 0
 
-
+sol = Solution()
+test = sol.isValid("()()()")
+print test
