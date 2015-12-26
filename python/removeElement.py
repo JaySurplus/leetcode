@@ -5,6 +5,7 @@
 	The order of elements can be changed. It doesn't matter what you leave beyond the new length.
 """
 
+
 class Solution(object):
     def removeElement(self, nums, val):
         """
@@ -12,18 +13,17 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
-        
-        l = 0
-        curr = 0
-        while curr < len(nums):
-        	if curr + l - 1 == len(nums):
-        		break
-
-        	else:
-        		if nums[curr] == val:
-        			l 
-
-        return curr
+        j = len(nums) - 1
+        for i in range(len(nums)-1, -1 ,-1):
+        	if nums[i] == val:
+        		temp = nums[i]
+        		nums[i] = nums[j]
+        		nums[j] = temp
+        		j -= 1
+        return j+1 , nums[:j+1]
+       
         		
-        		
-        		
+sol = Solution()
+nums = [1,1,2,3,4,45,5,6,2,1,1,2]
+val = 45
+print sol.removeElement(nums, val)
