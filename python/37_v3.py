@@ -10,19 +10,23 @@
     https://leetcode.com/problems/sudoku-solver/
 """
 import time
+import copy
 from collections import defaultdict
 class Solution(object):
-    def solveSudoku(self, board):
+    def solveSudoku(self, board, n):
         """
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
         """
-        result = [False]
         
+        solution = []
+
+
+        valid_num = set(["1","2","3","4","5","6","7","8","9"])
         row = defaultdict(set)
         col = defaultdict(set)
         squ = defaultdict(set)
-
+        poss = defaultdict(lambda : defaultdict(set))
 
         for i in range(9):
             for j in range(9):
@@ -31,32 +35,37 @@ class Solution(object):
                     col[j].add(board[i][j])
                     squ[i/3*3+j/3].add(board[i][j])
 
-
-        self.update(board, result , row , col ,squ)
-
-       
-        #return solution
+    
+        self.update(board, solution ,n , row, col , squ)
         
+        return solution
+    
         
       
-    def update(self, board,result,row ,col ,squ):
+    def update(self, board,solution ,n , row ,col ,squ):
+        if n > 0:
+            if len(solution) >= n:
+                return
+
         valid_num = set(["1","2","3","4","5","6","7","8","9"])
-        
         poss = []
 
- 
         for i in range(9):
             for j in range(9):
                 if board[i][j] == '.':
                     poss.append( ( (i,j),valid_num - (row[i]|col[j]|squ[i/3*3+j/3])))
-              
+           
+
 
 
         poss_list = [(key , list(val)) for key , val in poss]
 
         if  len(poss_list) == 0:
-            result[0] = not result[0]
+            temp = copy.deepcopy(board)
             
+            solution.append(temp)
+
+             
         else:
             poss_list.sort(key = lambda x:len(x[1]))
            
@@ -67,22 +76,29 @@ class Solution(object):
 
                 for val in vals:
                     temp = board[i][j]
+
                     board[i][j] = val
-                   # self.update(board,result)
+
+
+                 
+
                     row[i].add(val)
                     col[j].add(val)
                     squ[i/3*3+j/3].add(val)
-                    self.update(board,result,row,col ,squ)
 
-                    if result[0]:
-                       return
+                    
+                   
+                    #print 'b' ,squ[i/3*3+j/3] , board[i][j]
+                    
+                    self.update(board,solution,n ,row,col ,squ)
 
+                    
                     row[i].remove(val)
                     col[j].remove(val)
                     squ[i/3*3+j/3].remove(val)
+
                     board[i][j] = temp
-                
-                
+                 
 
             else:
                 return
@@ -115,22 +131,34 @@ class Solution(object):
         
         
 sol = Solution()
-#board = [".........","..2......",".....271.",".........",".2.......",".5.......","....9...8",".....16..","....6...."]
+board = [".........","..2......",".....271.",".........",".2.......",".5.......","....9...8",".....16..","....6...."]
 #board = ["..9748...","7........",".2.1.9...","..7...24.",".64.1.59.",".98...3..","...8.3.2.","........6","...2759.."]
-#board = ["..9748...","7........",".2.1.9...","..7...24.",".64.1.59.",".98...3..","...8.3.2.","........6","...2759.."]
+
 board = ["8........","..36.....",".7..9.2..",".5...7...","....457..","...1...3.","..1....68","..85...1.","..9...4.."]
+#board = [".87654321","2........","3........","4........","5........","6........","7........","8........","........."]
+#board = [".........",".........",".........",".........",".........",".........",".........",".........","........."]
 board = [list(i) for i in board]
-solution = []
-#board = [".87654321","2........",".........","4........","5........","6........","7........","8........","1........"]
-#valid_num = set(['1','2','3','4','5','6','7','8','9'])
+
+
+n = 0
+print "Sudoku :"
 for i in board:
     print '  '.join(i)
+
+
 start = time.time()
-sol.solveSudoku(board)
+t = sol.solveSudoku(board,n)
 end = time.time()
-#print sol.test(board)
-#print poss
+
+print 
 print "Running time is %f ms" %  (1000*float(end - start))
 
-for i in board:
-    print '  '.join(i)
+print
+i = 0 
+for i in range(len(t)):
+    print "Solution %d" %(i+1)
+    print sol.test(t[i])
+    for row in t[i]:
+        print '  '.join(row)
+    print ""
+print "%.2f ms for %d solutions. %.2f ms per solution." %( 1000*float(end - start) , i + 1 , 1000*float(end - start)/(i+1) ) 

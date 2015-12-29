@@ -30,20 +30,22 @@ class Solution(object):
 
 
     def parenthesisRecursive(self, l ,r ,  sol , finalSol ):
-	    if r < l:
-	        return
-	    if l == 0 and r == 0:
-	        finalSol.append(sol)
-	    if l > 0:
-	        self.parenthesisRecursive(l-1, r , sol+'(' , finalSol)
-	    if r > 0:
-	        self.parenthesisRecursive(l, r-1 , sol+')' , finalSol)
+    	#if len(finalSol) >2:
+    	#	return
+    	if r < l:
+    		return
+    	if l == 0 and r == 0:
+    		finalSol.append(sol)
+    	if l > 0:
+    		self.parenthesisRecursive(l-1, r , sol+'(' , finalSol)
+    	if r > 0:
+    		self.parenthesisRecursive(l, r-1 , sol+')' , finalSol)
 
 
 sol = Solution()
 start = time.time()
-test = sol.generateParenthesis(5)
+test = sol.generateParenthesis(3)
 end = time.time()
-
+print test
 #print test
 print 'running time is %f s' % (end -start)
