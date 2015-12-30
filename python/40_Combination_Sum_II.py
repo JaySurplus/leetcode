@@ -21,9 +21,9 @@
 
 """
 
-import copy
+
 class Solution(object):
-    def combinationSum(self, candidates, target):
+    def combinationSum2(self, candidates, target):
 
         if len(candidates) == 0:
           return []
@@ -33,36 +33,25 @@ class Solution(object):
      
         sol = []
         allSol = []
-        self.combi(candidates, target , sol , allSol)
+        self.combi(candidates, target , 0 ,sol , allSol)
+
         return allSol
 
-    def combi(self, candidates, target, sol , allSol):
-      #print candidates , target 
-      if len(candidates) == 0:
-        return  
+    def combi(self, candidates, target, ind ,sol , allSol):
 
-      else:
-        if candidates[-1] == target:
-          temp = copy.deepcopy(sol)
-          temp.append(candidates[-1])
-          allSol.append(temp)
-          self.combi(candidates[:-1], target , sol , allSol)
+        if target == 0:
+         	if sol not in allSol:
+          		allSol.append(sol)
 
-
-        else:
-            if candidates[-1] + candidates[0] > target:
-              self.combi(candidates[:-1], target , sol , allSol)
-            
-
-            else:
-              for i in range(len(candidates)-1,-1,-1):
-                sol.append(candidates[i])
-                self.combi(candidates[:i] , target - candidates[i] , sol , allSol)
-                sol.remove(candidates[i])
+        for i in range(ind , len(candidates)):
+            if target < candidates[i]:
+            	return
+            self.combi(candidates , target - candidates[i] ,ind + 1 , sol + [candidates[i]], allSol)
+            	
 
 sol = Solution()
 candidates = [10,1,2,7,6,1,5]
-
-target = 8
-result = sol.combinationSum(candidates, target)
+candidates = [1]
+target = 1
+result = sol.combinationSum2(candidates, target)
 print result
