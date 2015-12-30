@@ -16,7 +16,7 @@
 
 	https://leetcode.com/problems/combination-sum/
 """
-"""
+
 import copy
 class Solution(object):
     def combinationSum(self, candidates, target):
@@ -25,61 +25,31 @@ class Solution(object):
       		return []
 
       	candidates = list(set(candidates))
-     	candidates.sort()
+        candidates.sort()
      
       	sol = []
       	allSol = []
-      	self.combi(candidates, target , sol , allSol)
+
+      	self.combi(candidates, target , 0,sol , allSol)
       	return allSol
 
-    def combi(self, candidates, target, sol , allSol):
-    	#print candidates , target 
-    	if len(candidates) == 0:
-    		return	
-
-    	else:
-    		if candidates[-1] == target:
-    			temp = copy.deepcopy(sol)
-    			temp.append(candidates[-1])
-    			allSol.append(temp)
-    			self.combi(candidates[:-1], target , sol , allSol)
-
-
-      		else:
-      			if candidates[-1] + candidates[0] > target:
-      				self.combi(candidates[:-1], target , sol , allSol)
-      			
-
-      			else:
-      				for i in range(len(candidates)):
-      					sol.append(candidates[i])
-      					self.combi(candidates[i:] , target - candidates[i] , sol , allSol)
-      					sol.remove(candidates[i])
-"""
-
-class Solution:
-    # @param candidates, a list of integers
-    # @param target, integer
-    # @return a list of lists of integers
-    def DFS(self, candidates, target, start, valuelist):
-        length = len(candidates)
+    def combi(self, candidates, target,  ind,sol , allSol):
+        #print candidates , target 
         if target == 0:
-            return Solution.ret.append(valuelist)
-        for i in range(start, length):
-            if target < candidates[i]:
-                return
-            self.DFS(candidates, target - candidates[i], i, valuelist + [candidates[i]])
-        
-    def combinationSum(self, candidates, target):
-    	candidates = list(set(candidates))
-        candidates.sort()
-        Solution.ret = []
-        self.DFS(candidates, target, 0, [])
-        return Solution.ret
+          allSol.append(sol)
+
+        else:
+          if target < candidates[0]:
+            return
+          else:
+            for i in range(ind , len(candidates)):
+              self.combi(candidates, target - candidates[i], i, sol + [candidates[i]] , allSol )
+
 
 
 sol = Solution()
-candidates = [1,2,4,6,8]
+#candidates = [1,1,2,2,4,6,8]
+candidates = [1,2,3,3,4,5,5,5,6,7,8,8,9]
 target = 9
 result = sol.combinationSum(candidates, target)
 print result
@@ -88,4 +58,4 @@ print result
 target = 40
 #candidates = [1,3,9,27]
 #result = sol.combinationSum(candidates, target)
-print result
+#print result
