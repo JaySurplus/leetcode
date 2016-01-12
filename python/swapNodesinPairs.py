@@ -29,9 +29,9 @@ class Solution(object):
             return head
 
         temp = ListNode(0)
- 		temp.next = head   
+        temp.next = head   
         curr = temp
-        while curr.next and curr.next.next
+        while curr.next and curr.next.next:
         	
         	p = curr.next.next
         	curr.next.next = p.next

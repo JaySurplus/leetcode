@@ -23,64 +23,35 @@
 	https://leetcode.com/problems/regular-expression-matching/
 
 """
-
-class Solution(object):
+"""
+class Solution:
+    # @return a boolean
     def isMatch(self, s, p):
-        """
-        :type s: str
-        :type p: str
-        :rtype: bool
-        """
-        
-        p_length = len(p)
-        s_length = len(s)
-        i = 0
-        j = 0
+        dp=[[False for i in range(len(p)+1)] for j in range(len(s)+1)]
+        print dp
+        dp[0][0]=True
+        for i in range(1,len(p)+1):
+            if p[i-1]=='*':
+                if i>=2:
+                    dp[0][i]=dp[0][i-2]
+        for i in range(1,len(s)+1):
+            for j in range(1,len(p)+1):
+                if p[j-1]=='.':
+                    dp[i][j]=dp[i-1][j-1]
+                elif p[j-1]=='*':
+                    dp[i][j]=dp[i][j-1] or dp[i][j-2] or (dp[i-1][j] and (s[i-1]==p[j-2] or p[j-2]=='.'))
+                else:
+                    dp[i][j]=dp[i-1][j-1] and s[i-1]==p[j-1]
+        return dp[len(s)][len(p)]
+"""
 
-       	# invalid state.
-        if p_length == 0 or p[0] == '*':
-            return False
+test = Solution()
+print test.isMatch('','a')
+print test.isMatch('aa','a')
+print test.isMatch('aa','aa')
+print test.isMatch('aab', 'c*a*b')
+print test.isMatch("aa", ".*")
+print test.isMatch("ab", ".*")
+print test.isMatch("a", "b")
+print test.isMatch("ab", ".*c")
 
-        # will match anything
-        if p == ".*":   
-        	return True
-
-
-        while i < s_length :
-            if p[i] == '.':
-            	if i < p_length-1:
-            		if p[i+1] != '*':
-            			test = self.isMatch(s[i+1:], p[i+1])
-            			if not test:
-            				return False
-            		else:
-
-            	else:
-            		return True
-
-            elif p[i] == '*':
-            	pre = p[i-1]
-            	
-            	
-            
-            
-            
-            
-            
-            
-        return True
-
-
-def main():
-	test = Solution()
-    
-	print test.isMatch('','a')
-	print test.isMatch('aa','a')
-	print test.isMatch('aab', 'c*a*b')
-	print test.isMatch("aa", ".*")
-	print test.isMatch("ab", ".*")
-	print test.isMatch("a", "b")
-	print test.isMatch("ab", ".*c")
-
-if __name__ == '__main__':
-	main()
