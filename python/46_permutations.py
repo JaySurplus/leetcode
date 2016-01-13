@@ -47,16 +47,16 @@ class Solution(object):
 
 sol = Solution()
 
-nums = [1,2,3]
+nums = [1,1,2,2,3,4,5,6,8]
 import time
 
 start1 = time.time()
-for i in range(100000):
+for i in range(1):
 	sol.permute(nums)
 end1 = time.time()
 
 start2 = time.time()
-for i in range(100000):
+for i in range(1):
 	sol.permute2(nums)
 end2 = time.time()
 
