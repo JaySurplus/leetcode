@@ -14,23 +14,30 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if len(nums) == 0:
-        	return 
-
+       
+     
         s = 0
         m = nums[0]
 
-        if m < 0:
-        	return max(m , self.maxSubArray(nums[1:]))
+     
 
         for i in nums:
         	s += i
+        	if s > m:
+        		m = s
         	if s < 0:
         		s = 0
-        	elif s > m:
-        		m = s
         return m
-
+        
+        """
+    	s = 0
+    	m = nums[0]
+    	for i in nums:
+        	s += i
+        	m = max(s,m)
+        	s = max(0,s)
+    	return m
+    	"""
 sol = Solution()
 
 nums = [-2,1,-3,4,-1,2,1,-5,4]
