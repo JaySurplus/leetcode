@@ -17,7 +17,7 @@
 
 class Solution:
 	
-	def canJump(self, nums):
+	def canJumpI(self, nums):
 
 		
 
@@ -33,21 +33,21 @@ class Solution:
 					return True
 
 
-	def canJumpII(self, nums):
-		l = [True]*len(nums)
-		ind = []
-		for i in range(0, len(nums)-1):
-			if nums[i]==0:
-				l[i]=False
-				ind.append(i)
-				
-		for j in ind:
-			for x in range(0, j):
-				if nums[x]>(j-x):
-					l[j] = True
-			if l[j] == False:
-				return False
+	def canJump(self, nums):
 
+		check = True
+		ind = 0
+		for i in range(len(nums)-1):
+			if nums[i]==0:
+				check=False
+				for x in range(ind ,i):
+					if nums[x] + x > i:
+						if nums[x] + x >= len(nums) -1:
+							return True
+						check = True
+				ind = x 
+				if check == False:
+					return False
 		return True
         
 		
@@ -55,16 +55,16 @@ class Solution:
 sol = Solution()
 nums = [2,3,1,1,4]
 
-print sol.canJump(nums)
+#print sol.canJump(nums)
 
 nums = [3,2,1,0,4]
-print sol.canJump(nums)
+#print sol.canJump(nums)
 
 nums = [1,0]
-print sol.canJump(nums)
+#print sol.canJump(nums)
 
 nums = [0,1]
-print sol.canJump(nums)
+#print sol.canJump(nums)
 
-nums = [2,55555555,0 ,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0] 
+nums = [2,4523,0 ,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0] 
 print sol.canJump(nums)
