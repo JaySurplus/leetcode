@@ -20,11 +20,22 @@ class Solution(object):
         :type intervals: List[Interval]
         :rtype: List[Interval]
         """
+       
         intervals.sort(key = lambda x : x.start)
 
-        #print [ (i.start , i.end) for i in intervals]
-        for i in range():
-        	pass
+      
+        l = len(intervals) - 1
+        ind = 0
+        res = [intervals[0]]
+        for i in intervals[1:]:
+        	if res[-1].end >= i.start:
+        		if res[-1].end < i.end :
+        			res[-1].end = i.end
+        	else:
+        		res.append(i)
+
+        return res
+        	
 
 a = Interval(1,3)
 b = Interval(2,6)
@@ -35,5 +46,5 @@ d = Interval(15,18)
 intervals = [a, b, c,d]
 
 sol = Solution()
-sol.merge(intervals)
-print a
+res = sol.merge(intervals)
+print [ (i.start , i.end) for i in res]
