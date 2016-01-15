@@ -30,11 +30,11 @@ class Solution(object):
     	while n > 0:
     		fac /= n
     		t = (k - 1)/fac
+    		k %= fac
     		res+=l[t]
-    		k -= fac*t
-    		n -= 1
     		l.remove(l[t])
-    	
+    		n -= 1
+    		
     	return res
 
 
@@ -44,4 +44,4 @@ class Solution(object):
 sol = Solution()
 n = 3
 k = 4
-print sol.getPermutation(99, 1)
+print sol.getPermutation(4, 1)
