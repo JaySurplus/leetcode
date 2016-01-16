@@ -10,6 +10,10 @@
 		"1 a" => false
 		"2e10" => true
 	Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.
+
+	Good exp.
+	https://leetcode.com/discuss/13691/c-my-thought-with-dfa
+	https://leetcode.com/discuss/57347/my-python-solution-80ms-easy-to-understand
 """
 
 import re
