@@ -51,7 +51,7 @@ class Solution(object):
 		self.n = len(obstacleGrid[0])
 		self.o = obstacleGrid
 
-		if self.o[0][0] == 1:
+		if self.o[0][0] == 1 or self.o[-1][-1] == 1:
 			return 0
 
 		
