@@ -45,6 +45,6 @@ class Solution(object):
     			self.dfs(nums[i+1:] , n-1 , temp )
 
 sol = Solution()
-nums = [4,1,0,-1]
+nums = [4,1,0]
 
 print sol.subsets(nums)
