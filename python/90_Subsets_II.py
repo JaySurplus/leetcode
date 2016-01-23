@@ -70,6 +70,6 @@ class Solution(object):
 
 
 sol = Solution()
-S = [i for i in range(100)]
+S = [i for i in range(10)]
 res =  sol.subsetsWithDup(S)
 print len(res)
