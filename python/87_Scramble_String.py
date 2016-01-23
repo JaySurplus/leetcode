@@ -65,16 +65,16 @@ class Solution(object):
 
         l1 = len(s1)
         l2 = len(s2)
-        #c1 = collections.defaultdict(int)
-        #c2 = collections.defaultdict(int)
-        #for j in xrange(l1):
-        #	print j
-        #	c1[s1[j]]+= 1
-        	#print s1[i] , s2[i]
-        #	c2[s2[j]]+= 1
 
-        if sorted(s1) != sorted(s2):
-        	return False
+        count1 = collections.defaultdict(int)
+        count2 = collections.defaultdict(int)
+        for c1, c2 in zip(s1, s2):
+            count1[c1] += 1
+            count2[c2] += 1
+        if count1 != count2: return False
+
+        #if sorted(s1) != sorted(s2):
+        #	return False
         
        	if l1 <4:
        		return True
