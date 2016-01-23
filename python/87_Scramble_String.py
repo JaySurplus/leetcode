@@ -52,7 +52,7 @@
 """
 
 
-
+import collections
 class Solution(object):
     def isScramble(self, s1, s2):
         """
@@ -60,29 +60,36 @@ class Solution(object):
         :type s2: str
         :rtype: bool
         """
-        #for i in xrange(1,len(s2)):
-        res = self.rotate(s1,s2) 
-        #print res
+        if s1 == s2:
+        	return True
+
+        l1 = len(s1)
+        l2 = len(s2)
+        #c1 = collections.defaultdict(int)
+        #c2 = collections.defaultdict(int)
+        #for j in xrange(l1):
+        #	print j
+        #	c1[s1[j]]+= 1
+        	#print s1[i] , s2[i]
+        #	c2[s2[j]]+= 1
+
+        if sorted(s1) != sorted(s2):
+        	return False
+        
+       	if l1 <4:
+       		return True
 
 
-    def rotate(self,s1,s2):
-    	if len(s2) > 1:
-    		for i in xrange(1,len(s2)): 
+        f = self.isScramble
+        for i in xrange(1,l1):
+        	if f(s1[:i] , s2[:i]) and f(s1[i:], s2[i:]) or \
+        	f(s1[:i] , s2[i:]) and f(s1[i:], s2[:i]):
+        		return True
+        return False
 
-    			s21 = self.rotate(s1,s2[i:])+self.rotate(s1,s2[:i])
-    			if s21 == s1:
-    				print True
-    			s22 = s2[i:] + self.rotate(s1,s2[:i])
-    			if s22 == s1:
-    				print True
-    			s23 = self.rotate(s1,s2[:i]) + s2[i:]
-    			if s23 == s1:
-    				print True
-    			s24 = self.rotate(s1,s2[:i]) + self.rotate(s1,s2[i:])
-    			if s23 == s1:
-    				print True
-    	
-    	return s2
+
+
+
     		
 
 
@@ -90,7 +97,8 @@ class Solution(object):
 
 
 sol = Solution()
-s1 = 'great'
-s2 = 'rgeat'
+s1 = 'abab'
+s2 = 'baba'
 print sol.isScramble(s1,s2)
 print 
+print s1[:2] , s1[-2:]
