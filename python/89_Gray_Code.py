@@ -35,7 +35,7 @@ class Solution(object):
     		return [0,1]
     	else:
     		temp = self.grayCodeII(n-1)
-    		return temp+ map(lambda x : x>>1, temp )[::-1]
+    		return temp+ map(lambda x : x+2**(n-1), temp )[::-1]
 
 sol = Solution()
 n = 4
