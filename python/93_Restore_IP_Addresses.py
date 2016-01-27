@@ -15,8 +15,26 @@ class Solution(object):
         :type s: str
         :rtype: List[str]
         """
-        if len(s) > 12 or len(s) < 4:
-        	return []
+        def dfs(i,s , temp):
+        	if len(s) < (4-i)*1 or len(s) > (4-i)*3:
+        		return 
+        	if i == 3 :
+        		if int(s) <= 255:
+        			temp += str(int(s))
+        			if temp not in res:
+        				res.append(temp)
+        		return
+        	for j in range(1,4):
+        		if j == 3:
+        			if int(s[:j]) > 255:
+        				return
+        		dfs(i+1,s[j:],temp+str(int(s[:j]))+'.')
+        		#dfs(i+1,s[j:],temp+s[:j]+'.')
+        	return
+        res = []
+        dfs(0,s,'')
+        return res
 
-        
-
+sol = Solution()
+s = "010010"
+print sol.restoreIpAddresses(s)
