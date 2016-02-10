@@ -9,7 +9,6 @@ class Solution(object):
         	return s
         result=['']*numRows
         rang = (numRows-1)<<1
-       
         for i in range(len(s)):
         	pos = i%rang
         	if pos<= numRows-1:
@@ -18,7 +17,6 @@ class Solution(object):
         	else:
         		result[-1 * (pos) + rang]+=s[i]
         result = ''.join(result)
-       
 
         return result
 
