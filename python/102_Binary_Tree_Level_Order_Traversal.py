@@ -23,13 +23,13 @@ class Solution(object):
 			node = stack[0]
 			stack = stack[1:]
 			temp.append(node.val)
-			
+
 			if node.left:
 				stack2.append(node.left)
 
 			if node.right:
 				stack2.append(node.right)
-			
+
 
 			if not stack:
 				res.append(temp)
@@ -51,10 +51,11 @@ class Solution(object):
 
 		if not root:
 			return []
-		
+
 		res = []
 		helper(res, root, 0)
 		return res
+
 
 
 
@@ -81,4 +82,4 @@ n20.right = n7
 
 sol = Solution()
 print sol.levelOrderII(n3)
- 
+
