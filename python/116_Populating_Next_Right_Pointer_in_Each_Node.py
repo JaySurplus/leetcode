@@ -60,6 +60,7 @@ class Solution(object):
             node.next = None if count & (count+1) == 0 else que[0]
 
     def connect(self, root):
+        """
     	if not root:
     		return
     	pre = root
@@ -72,7 +73,19 @@ class Solution(object):
     				curr.right.next = curr.next.left
     			curr = curr.next
     		pre = pre.left
-
+        """
+        if not root:
+            return
+        pre = root
+        curr = None
+        while pre.left:
+            curr = pre
+            while curr:
+                curr.left.next = curr.right
+                if curr.next:
+                    curr.right.next = curr.next.left
+                curr = curr.next
+            pre = pre.left
 
 
 
