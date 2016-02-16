@@ -11,7 +11,7 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-        if len(prices) == 0:
+        if len(prices) <= 1:
         	return 0
         res = 0
 
@@ -25,6 +25,7 @@ class Solution(object):
         			res = max(res, prices[max_p_ind] - prices[min_p_ind])
         		max_p_ind = i
         		min_p_ind = i
+
         res = max(res, prices[max_p_ind] - prices[min_p_ind])
         return res
 
