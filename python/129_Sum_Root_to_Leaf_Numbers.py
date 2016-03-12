@@ -47,7 +47,6 @@ class Solution(object):
     		else:
     			self.res = 2**31-1
     		return
-        
     # Non-recursive
     def sumNumbers(self, root):
     	if not root:
@@ -80,4 +79,3 @@ n3.right = TreeNode(5)
 n3.left = TreeNode(5)
 print sol.sumNumbers_rec(n1)
 
-        
