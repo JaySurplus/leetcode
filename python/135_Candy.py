@@ -48,11 +48,40 @@ class Solution(object):
 			cands += max((debt+2)*(debt+1)/2-cands_at_last_peak, (debt+1)*debt/2)
 		return cands
 
+<<<<<<< HEAD
+=======
+	def candyIII(self, ratings):
+		cands = 1
+		last_peak = 1
+		debet = 0
+
+		for i in range(1, len(ratings)):
+			if ratings[i] < ratings[i-1]:
+				debet += 1
+				continue
+
+			if debet > 0:
+				cands += max( (debet+1) * (debet+2)/2 - last_peak , debet * (debet+1) /2 )
+				debet = 0
+				last_peak = 1
+
+			last_peak = 1 if ratings[i] == ratings[i-1] else last_peak + 1
+			cands += last_peak
+
+		if debet > 0:
+			cands += max( (debet+1) * (debet+2)/2 - last_peak , debet * (debet+1) /2 )
+
+		return cands
+>>>>>>> ed4b8dbc1a638fd255efb08bd1490ef241a524fe
 
 
 
 sol = Solution()
 ratings = [1,1,1,1,1,3,4,61,3,4,52,3,1,1,3,5,7,2,1,3,5,7]
 #ratings = [1,1,1,1,1,4]
+<<<<<<< HEAD
 res = sol.candy(ratings)
+=======
+res = sol.candyIII(ratings)
+>>>>>>> ed4b8dbc1a638fd255efb08bd1490ef241a524fe
 print res
