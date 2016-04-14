@@ -30,4 +30,6 @@ class Solution(object):
 
 sol = Solution()
 nums = [1,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,5,6,7,8,8,8,8,8,8]
-print sol.removeDuplicates(nums)
+res= sol.removeDuplicates(nums)
+print res 
+print nums
