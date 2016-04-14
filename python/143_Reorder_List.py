@@ -46,7 +46,43 @@ class Solution(object):
     		2.reverse the second list
     		3.merge the 2 lists
     	"""
+    	if head and head.next.next:
+
+    		l1 = head
+    		l2 = head
+    		while  l2.next and l2.next.next:
+    			l1 = l1.next
+    			l2 = l2.next.next
+
+    		l2 = l1.next  # List 2
+    		l1.next = None
+    		l1 = head     # List 1
     	
+    		# Now reverse List 2
+    		dummyHead = ListNode('Dummy')
+    		dummyHead.next = l2
+    		while l2.next:
+    			temp = l2.next
+    			l2.next = temp.next
+    			temp.next = dummyHead.next
+    			dummyHead.next = temp
+
+    		temp = None
+    		l2 = dummyHead.next
+    		
+    	
+    		# Merge l1 and l2
+
+    		while l2:
+    			dummyHead.next = l2.next
+    			l2.next = l1.next
+    			l1.next = l2
+    			
+    			l2 = dummyHead.next
+    			l1 = l1.next.next
+
+    		dummyHead = None
+    		
 
 
 def printL(head):
@@ -62,16 +98,19 @@ L2 = ListNode(2)
 L3 = ListNode(3)
 L4 = ListNode(4)
 L5 = ListNode(5)
-
+L6 = ListNode(6)
 L1.next = L2
 L2.next = L3
+
 L3.next = L4
 L4.next = L5
+L5.next = L6
 
 print printL(L1)
 
 sol = Solution()
 sol.reorderList(L1)
 print printL(L1)
+
 
 
