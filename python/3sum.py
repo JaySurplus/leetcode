@@ -10,57 +10,82 @@
 
 """
 
+
 class Solution(object):
-	def threeSum(self, nums):
-		"""
-		:type nums: List[int]
-		:rtype: List[List[int]]
-		"""
-		length = len(nums)
-		i = 0
-		result = []
-		nums.sort()
-	
-		while i <= length -3:
 
-			j = i+1
-			k = length -1
-			
-			
-			while j < k :
-				
-				
-				if nums[i] + nums[j] == -nums[k]:
-					
-					result.append((nums[i] , nums[j] , nums[k]))
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        result = []
+        instance = {}
+        for n in nums:
+            if n in instance:
+                c = instance[n]
+                if c == 1 or (n == 0 and c == 2):
+                    instance[n] += 1
+            else:
+                instance[n] = 1
 
-					j+=1 
-					k-=1
-					while nums[j-1] == nums[j] and j < k:
-						j+=1
-					while nums[k+1] == nums[k] and j < k:
-						k-=1
-					
-					
-				
-				elif nums[i] + nums[j] < -nums[k]:
-					while j  < k:
-						j += 1
-						if nums[j] > nums[j-1]:
-							break
-				else:
-					while j < k:
-						k -= 1
-						if nums[k] < nums[k+1]:
-							break
+        if 0 in instance.keys():
+            if instance[0] == 3:
+                result.append((0,0,0))
+                instance[0] = 1
 
-			while nums[i+1] == nums[i] and i + 1 <= length-3:
-				i += 1
-			
-			i+=1
-			
 
-		return result
+
+        for n , count in instance.iteritems():
+            if count == 2 and (n == 0 or -2*n not in instance):
+                instance[n] = 1
+            
+
+        
+        nums = []
+        
+        for n , count in sorted(instance.iteritems()):
+            nums += [n] * count
+
+        length = len(nums)
+        i = 0
+        
+        nums.sort()
+
+        while i <= length - 3:
+
+            j = i + 1
+            k = length - 1
+
+            while j < k:
+
+                if nums[i] + nums[j] == -nums[k]:
+
+                    result.append((nums[i], nums[j], nums[k]))
+
+                    j += 1
+                    k -= 1
+                    while nums[j - 1] == nums[j] and j < k:
+                        j += 1
+                    while nums[k + 1] == nums[k] and j < k:
+                        k -= 1
+
+                elif nums[i] + nums[j] < -nums[k]:
+                    while j < k:
+                        j += 1
+                        if nums[j] > nums[j - 1]:
+                            break
+                else:
+                    while j < k:
+                        k -= 1
+                        if nums[k] < nums[k + 1]:
+                            break
+
+            while nums[i + 1] == nums[i] and i + 1 <= length - 3:
+                i += 1
+
+            i += 1
+
+        return result
 
 """
 class Solution:
@@ -89,7 +114,7 @@ class Solution:
 """
 sol = Solution()
 
-nums = [-1 , 0 ,1 ,2 ,-1 ,-4]
-nums = [-2,0,0,2,2]
+nums = [-1, 0, 1, 2, -1, -4]
+nums = [-2, 0, 0,0, 2, 2 ,4 , 2 , -4 , -2]
 #nums = [-2,0,1,1,2]
 print sol.threeSum(nums)

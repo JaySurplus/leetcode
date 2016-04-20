@@ -3,34 +3,50 @@
 	https://leetcode.com/problems/palindrome-number/
 """
 #import math
+
+
 class Solution(object):
+
     def isPalindrome(self, x):
         """
         :type x: int
         :rtype: bool
         """
-       
-        if x < 0:
-        	return False
-        if x < 10:
-        	return True
 
-       
+        if x < 0:
+            return False
+        if x < 10:
+            return True
+
         def size(n):
-        	size = 0
-        	while n /10 != 0:
-        		size+=1
-        		n = n/10
-        	return size
+            size = 0
+            while n / 10 != 0:
+                size += 1
+                n = n / 10
+            return size
 
         size = size(x)
 
-        if x%10 != x/10**size:
-        	return False
+        if x % 10 != x / 10**size:
+            return False
         else:
-        	x = x%10**size
-        	x = x/10
-        	return self.isPalindrome(x)
+            x = x % 10**size
+            x = x / 10
+            return self.isPalindrome(x)
+
+    def isPalindromeII(self, x):
+        if x < 0:
+            return False
+        if x < 10:
+            return True
+        if x % 10 == 0:
+            return False
+        y = 0
+        while x > y:
+            y = y * 10 + x % 10
+            x = x / 10
+
+        return x == y / 10 or x == y
 
         '''
         #print size
@@ -67,16 +83,15 @@ class Solution(object):
         print x
         return result == x	
         """
-      
 
 
 def main():
-	test = Solution()
-	#return test.isPalindrome(1)
-	print test.isPalindrome(112211)
-	print test.isPalindrome(1123211)
-	print test.isPalindrome(112321411)
-	print test.isPalindrome(11211)
+    test = Solution()
+    # return test.isPalindrome(1)
+    print test.isPalindromeII(112211)
+    print test.isPalindromeII(1123211)
+    print test.isPalindromeII(112321411)
+    print test.isPalindromeII(11211)
 
 if __name__ == '__main__':
-	main()
+    main()
