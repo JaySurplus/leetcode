@@ -17,13 +17,13 @@ class Solution(object):
 		if sum(gas) < sum(cost):
 			return -1
 
-		
+
 		step = 0
 		count = 0
 		index = 0
 		next_st = 0
 		forward = True
-		
+
 		while step < len(gas):
 			if forward:
 				count += gas[next_st]-cost[next_st]
@@ -31,14 +31,14 @@ class Solution(object):
 			else:
 				index -= 1
 				count += gas[index] - cost[index]
-				
+
 			if count < 0:
 				forward = False
 			else:
 				forward = True
 
 			step += 1
-	
+
 		return (index)%len(gas)
 
 	def canCompleteCircuit(self, gas, cost):
@@ -54,7 +54,7 @@ class Solution(object):
 		for i in range(1,n+1):
 			curr_sum += gas[i-1]-cost[i-1]
 			if curr_sum < min_sum:
-				index = i 
+				index = i
 				min_sum = curr_sum
 
 		return index if curr_sum >= 0 else -1
@@ -63,6 +63,6 @@ sol = Solution()
 gas = [0,12,0,0]
 cost = [3,4,2,1]
 
-res = sol.canCompleteCircuit(gas, cost)
+res = sol.canCompleteCircuitII(gas, cost)
 print res
 

@@ -33,8 +33,8 @@ class Solution(object):
         						if n != j:
         							if board[m][n] == key:
         								return False
-        				
-        					
+
+
         return True
 
 sol = Solution()

@@ -3,7 +3,7 @@ import time
 class Solution(object):
     def solveSudoku(self, board):
         #for i in range(9):
-        #    board[i] = [int(x) if x != '.' else 0 for x in board[i]]    
+        #    board[i] = [int(x) if x != '.' else 0 for x in board[i]]
 
 
         R,C=3,3
@@ -30,7 +30,7 @@ class Solution(object):
                 board[r][c] = n
             yield board
         #for i in range(9):
-        #   board[i] = [str(x) for x in board[i]]  
+        #   board[i] = [str(x) for x in board[i]]
 
 
         return
@@ -48,7 +48,7 @@ class Solution(object):
                     yield s
                 self.deselect(X,Y,r,cols)
                 solution.pop()
-    
+
     def select(self,X,Y,r):
         cols=[]
         for j in Y[r]:
@@ -58,7 +58,7 @@ class Solution(object):
                         X[k].remove(i)
             cols.append(X.pop(j))
         return cols
-    
+
     def deselect(self,X,Y,r,cols):
         for j in reversed(Y[r]):
             X[j]=cols.pop()
@@ -66,7 +66,7 @@ class Solution(object):
                 for k in Y[i]:
                     if k!=j:
                         X[k].add(i)
-    
+
     def T(self,Y):
         X={}
         for i,j in Y.items():
@@ -76,20 +76,20 @@ class Solution(object):
                 else:
                     X[k]=[i]
         return X
-    
+
     def exact_cover(self,X,Y):
         X = {j:set() for j in X}
         for i,row in Y.items():
             for j in row:
                 X[j].add(i)
         return X,Y
-    
+
 board = ["8........","..36.....",".7..9.2..",".5...7...","....457..","...1...3.","..1....68","..85...1.",".9....4.."]
 
 sudoku = [list(row) for row in board]
 for i in range(9):
-    sudoku[i] = [int(x) if x != '.' else 0 for x in sudoku[i]]    
-#print sudoku 
+    sudoku[i] = [int(x) if x != '.' else 0 for x in sudoku[i]]
+#print sudoku
 
 sol = Solution()
 start = time.time()
@@ -100,4 +100,4 @@ print end - start
 ##    for i in s:
  #       print i
 print sudoku
-        
+

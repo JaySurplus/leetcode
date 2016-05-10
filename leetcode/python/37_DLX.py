@@ -81,7 +81,7 @@ if __name__=='__main__':
 
     sudoku = [list(row) for row in board]
     for i in range(9):
-        sudoku[i] = [int(x) if x != '.' else 0 for x in sudoku[i]]    
+        sudoku[i] = [int(x) if x != '.' else 0 for x in sudoku[i]]
     print sudoku
 
     start = time.time()
