@@ -15,11 +15,11 @@ class Solution(object):
         	return 0
 
        	min_p_ind = 0
-      
+
 
        	res = 0
        	for i in range(1,len(prices)):
-       		
+
        		if prices[i] < prices[i-1]:
        			if prices[i-1] > prices[min_p_ind]:
        				res += prices[i-1] - prices[min_p_ind]
@@ -42,7 +42,7 @@ class Solution(object):
         """
         if len(prices) < 2:
             return 0
-        
+
         profit = 0
         curr_profit = 0
         for i in xrange(1,len(prices)):

@@ -11,18 +11,18 @@ def sieveOfEratosthenes(n):
 
     res = [(i+2,res[i]) for i in range(len(res))]
     res = filter(lambda x: x[1] == True, res)
-    print len(res)
     return res[10000]
 
 def isPrime(n):
     if n == 2:
         return True
     if n%2 == 0 and n>2:
-        return True
+        return False
     for i in range(3,int(n**0.5),2):
         if n%i == 0:
-            return True
-    return False
+            return False
+    return True
 
 
-print sieveOfEratosthenes(10000000)
+print sieveOfEratosthenes(105000)
+print isPrime(104743)
