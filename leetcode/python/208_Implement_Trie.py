@@ -54,6 +54,12 @@ class Trie(object):
         :type prefix: str
         :rtype: bool
         """
+        curr = self.root
+        for char in prefix:
+            if char not in curr.nodes[char]:
+                return False
+            curr = curr.nodes[char]
+        return True
 
 
 # Your Trie object will be instantiated and called as such:

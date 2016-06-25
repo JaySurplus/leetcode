@@ -43,7 +43,7 @@ class Solution(object):
                 res = dp[(n + 1) / 2] * dp[n]
                 dp[(n + 1) / 2 * n] = res
 
-            if res >= c:
+            if res > c:
                 return n
             n += 1
 
@@ -59,7 +59,7 @@ class Solution(object):
 
 
 sol = Solution()
-n = 500
+n = 3
 start = time.time()
 res = sol.highlyDivisibleTriangularNumber(n)
 end = time.time()
