@@ -21,16 +21,16 @@ class Solution(object):
 
 
 
-        l = [[ks , v] for ks ,  v in dic.iteritems()]
-        l.sort(key = lambda x: x[1],reverse = True)
+        ls = [[ks , v] for ks ,  v in dic.iteritems()]
+        ls.sort(key = lambda x: x[1],reverse = True)
 
 
 
         i = 0
-        tl = l[0][1]
+        maxCount = ls[0][1]
 
-        while i < len(l):
-            if l[i][1] != tl:
+        while i < len(ls):
+            if ls[i][1] != maxCount:
                 break
             i += 1
 
@@ -38,17 +38,18 @@ class Solution(object):
         # the minimal required length can be given by:   k * (max_character_count - 1) + number_of_char_with_the_max_count,   in above example, max_character_count = 3, for {a:3,b:3,c:2}
         # and number_of_char_with_the_max_count = 2, for both a , b with count 3. result = 3 * (3-1) + 2 = 8
 
-        if  k * (tl-1) + i > len(s):
+        if  k * (maxCount-1) + i > len(s):
             return ""
 
         # create max_character_count sections
-        temp = [l[0][0]] * l[0][1]
+        temp = [ls[0][0]] * ls[0][1]
 
-        l.pop(0)
+
 
         i = 0
-        while l:
-            ks,v = l.pop(0)
+
+        for l in ls[1:]:
+            ks,v = l
             if v == len(temp):
                 # For character with count equal to max_character_count, we add the character into every section.
                 temp = map(lambda x: x+ks, temp)
@@ -65,9 +66,9 @@ class Solution(object):
 sol = Solution()
 
 s = "abeabacdd"
-#s = "abeabac"
+s = "abeabac"
 k = 3
-k = 5
+k = 2
 res = sol.rearrangeString(s,k)
 
 print res
