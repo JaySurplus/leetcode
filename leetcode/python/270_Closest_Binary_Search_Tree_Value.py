@@ -41,8 +41,14 @@ class Solution(object):
 
     def closestValueII(self, root, target):
         a = root.val
-        kid = root.left if target < a else root.right
-        if not kid: return a
+        if target == a:
+            return a
+        if target < a:
+            kid = root.left
+        else:
+            kid = root.right
+        if not kid:
+            return a
         b = self.closestValue(kid, target)
         return min((b, a), key=lambda x: abs(target - x))
 
