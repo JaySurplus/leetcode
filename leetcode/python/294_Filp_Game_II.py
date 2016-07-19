@@ -18,8 +18,9 @@ class Solution(object):
         :rtype: bool
         """
         split = s.split("-")
+        print split
         resList = map(self.helper , split)
-        return  reduce(lambda x , y : !(x == y) m
+        return  reduce(lambda x , y : x == y , resList)
 
     def helper(self,s):
         dp = [False, False, True]
@@ -37,5 +38,5 @@ class Solution(object):
         return dp[n]
 
 sol = Solution()
-test = "+++++---+++-+-+"
+test = "--"
 print sol.canWin(test)
