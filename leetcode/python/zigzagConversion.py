@@ -17,6 +17,8 @@ class Solution(object):
         	else:
         		result[-1 * (pos) + rang]+=s[i]
         result = ''.join(result)
+        #Test
+
 
         return result
 
