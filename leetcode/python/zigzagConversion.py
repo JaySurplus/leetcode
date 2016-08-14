@@ -18,6 +18,7 @@ class Solution(object):
         		result[-1 * (pos) + rang]+=s[i]
         result = ''.join(result)
         #Test
+        #This is another test
 
 
         return result
