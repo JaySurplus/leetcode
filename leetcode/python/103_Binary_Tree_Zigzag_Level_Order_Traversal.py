@@ -21,13 +21,11 @@ class Solution(object):
 			node = stack[0]
 			stack = stack[1:]
 			temp.append(node.val)
-			
 			if node.left:
 				stack2.append(node.left)
 
 			if node.right:
 				stack2.append(node.right)
-			
 
 			if not stack:
 				res.append(temp)
