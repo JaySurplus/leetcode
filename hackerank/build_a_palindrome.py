@@ -24,7 +24,6 @@ class Solution(object):
             left = len(s1)
             right = len(s2)
 
-            
 
 
 
