@@ -12,7 +12,46 @@ class Solution(object):
         :type rectangles: List[List[int]]
         :rtype: bool
         """
-        pass
+        curr_rec = []
+        #rectangle vector representation. [(x0,x1), (y0,y1)]
+        for rec in rectangles:
+            curr_rec.append([[rec[0],rec[2]],[rec[1],rec[3]]])
+        temp_rec = []
+        while len(curr_rec) > 1:
+            num_recs = len(curr_rec)
+            while curr_rec:
+                temp = curr_rec.pop(0)
+                i = 0
+                flag = True
+                while temp_rec and i < len(temp_rec):
+                    if temp_rec[i][0] == temp[0]:
+                        if temp_rec[i][1][1] == temp[1][0] :
+                            temp_rec[i][1][1] = temp[1][1]
+                            flag = False
+                            break
+                        elif temp_rec[i][1][0] == temp[1][1]:
+                            temp_rec[i][1][0] = temp[1][0]
+                            flag = False
+                            break
+                    elif temp_rec[i][1] == temp[1]:
+                        if temp_rec[i][0][1] == temp[0][0]:
+                            temp_rec[i][0][1] = temp[0][1]
+                            flag = False
+                            break
+                        elif temp_rec[i][0][0] == temp[0][1]:
+                            temp_rec[i][0][0] = temp[0][0]
+                            flag = False
+                            break
+                    i += 1
+                if flag:
+                    temp_rec.append(temp)
+            if len(temp_rec) == num_recs:
+                return False
+
+            curr_rec = temp_rec
+            temp_rec = []
+        return True
+
 
 if __name__ == '__main__':
     sol = Solution()
