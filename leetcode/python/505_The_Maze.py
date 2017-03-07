@@ -62,14 +62,15 @@ class Solution(object):
         queue = []
         heapq.heappush(queue,(0, start))
         visited = set([])
-
+        res = []
         while queue:
 
             curr_step, curr_pos = heapq.heappop(queue)
-            if curr_pos not in visited:
+            #if curr_pos not in visited:
+            if True:
                 if curr_pos == d:
                     return curr_step
-
+                    #res.append((curr_pos,curr_step))
                 visited.add(curr_pos)
 
                 for nei_step, nei_pos in getNext(curr_pos[0],curr_pos[1]):
