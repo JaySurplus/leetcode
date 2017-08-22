@@ -3,3 +3,4 @@ leetcode/python/.vscode/*
 *.icloud
 *.pyc
 *.html
+.gitignore
