@@ -100,4 +100,6 @@ if __name__ == "__main__":
         res = sol.solver(n, k, ksum)
         t2 = time.time()
         print(t2 - t1)
-        #print(n, k, " ".join(list(map(str, res))))
+        print(n, k, " ".join(list(map(str, res))))
+
+
